@@ -5,37 +5,37 @@ export const initialState = {
     post: {},
   }
   
-const postSlice = createSlice({
-    name: 'post',
+const postsSlice = createSlice({
+    name: 'posts',
     initialState,
     reducers: {
-      getPost: state => {  state.loading = true
-      
+      getPosts: (state) => { 
+         state.loading = true
       },
-      getPostSuccess: (state, { payload }) => {
-        state.post = payload
+      getPostsSuccess: (state, { payload }) => {
+        state.posts = payload
         state.loading = false
         state.hasErrors = false
       },
-      getPostFailure: state => {
+      getPostsFailure: (state) => {
         state.loading = false
         state.hasErrors = true
       },
     },
   })
-  export const { getPost, getPostSuccess, getPostFailure } = postSlice.actions
+  export const { getPosts, getPostsSuccess, getPostsFailure } = postsSlice.actions
 
 
 
 
-  export const postSelector = state => state.post
-export default postSlice.reducer
+export const postsSelector = (state) => state.posts
+export default postsSlice.reducer
 
 
 
-export function fetchPost(id) {
+export function fetchPosts(id) {
     return async dispatch => {
-      dispatch(getPost())
+      dispatch(getPosts())
   
       try {
         const response = await fetch(
@@ -43,9 +43,9 @@ export function fetchPost(id) {
         )
         const data = await response.json()
   
-        dispatch(getPostSuccess(data))
+        dispatch(getPostsSuccess(data))
       } catch (error) {
-        dispatch(getPostFailure())
+        dispatch(getPostsFailure())
       }
     }
   }
