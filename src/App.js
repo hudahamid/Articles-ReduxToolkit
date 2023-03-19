@@ -2,7 +2,7 @@
 import React from 'react'
 import { BrowserRouter as Router,  Route, Routes } from 'react-router-dom'
 import DashboardPage from './pages/Dashboard'
-import PostsPage from './pages/Posts'
+import PostsPage from './pages/PostsPage'
 import SinglePost from './pages/SinglePost'
 
 

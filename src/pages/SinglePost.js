@@ -4,13 +4,19 @@ import { useParams } from "react-router-dom";
 import { fetchPost,postSelector } from "../slices/Post";
 import { fetchComments,CommentsSelector } from "../slices/Comments";
 import { Post } from "../components/Post";
-import { Comments } from "../components/Comments";
+import { Comment } from "../components/Comments";
 
-
-const SinglePost= ({match})=>{
-    const dispatch=useDispatch();
-    const {post ,   loading:postLoading  ,   hasErrors:postHasErrors   }=useSelector(postSelector);
-    const {comments ,   loading:commentLoading  ,   hasErrors:commentHasErrors   }=useSelector(CommentsSelector);
+const SinglePostPage = ({ match }) => {
+    const dispatch = useDispatch()
+    const { post, loading: postLoading, hasErrors: postHasErrors } = useSelector(
+      postSelector
+    )
+    const {
+      comments,
+      loading: commentLoading,
+      hasErrors: commentHasErrors,
+    } = useSelector(CommentsSelector)
+  
 
    const {id}=useParams();
    useEffect(() => {
@@ -19,25 +25,30 @@ const SinglePost= ({match})=>{
 
    },[dispatch,match])
    
-   const renderPost = () =>{
-    if(postLoading) return <p> post is loading ...</p>
-    if (postHasErrors) return <p> unable to display post </p>
-    return <Post  post={post} />
-   }
-   const renderComment= () =>{
-    if(commentLoading) return <p> comments is loading ...</p>
-    if (commentHasErrors) return <p> unable to display comment</p>
-    return comments.map((comment)=>{
-        return <Comments key={comment.id} comment={comment}/>
-    })
-    }
-    return(
-        <section>
-            {renderPost()}
-            <h2>comments</h2>
-            {renderComment()}
-        </section>
-    )
+  
+   const renderPost = () => {
+    if (postLoading) return <p>Loading post...</p>
+    if (postHasErrors) return <p>Unable to display post.</p>
 
+    return <Post post={post} />
+  }
+
+  const renderComments = () => {
+    if (commentLoading) return <p>Loading comments...</p>
+    if (commentHasErrors) return <p>Unable to display comments.</p>
+
+    return comments.map(comment => (
+      <Comment key={comment.id} comment={comment} />
+    ))
+  }
+
+  return (
+    <section>
+      {renderPost()}
+      <h2>Comments</h2>
+      {renderComments()}
+    </section>
+  )
 }
-export default SinglePost;
+
+export default SinglePostPage
