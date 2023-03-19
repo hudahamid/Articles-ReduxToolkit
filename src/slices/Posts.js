@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const initialState = {
     loading: false,
     hasErrors: false,
-    post: {},
+    posts: {},
   }
-  
+  // A slice for posts with our three reducers
 const postsSlice = createSlice({
     name: 'posts',
     initialState,

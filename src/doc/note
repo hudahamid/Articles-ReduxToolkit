@@ -1,0 +1,29 @@
+// Redux toolkit
+//  1.Store
+//   we no longer have to bring Redux DevTools and Redux Thunk
+//  into the index.js file. Now we only need configureStore, instead of createStore
+ 
+
+
+//  2.Slices
+//  Instead of dealing with reducers, actions, and all as separate files and individually
+//   creating all those action types, RTK gives us the concept of slices.
+//   A slice automatically generates reducers, action types, and action creators.
+//    As such, you'll only have to create one folder - slices.
+
+
+
+// **We'll make all the same changes, but note that we're no longer returning
+//  the entire state - we're just mutating state. It's still
+//  immutable under the hood, but this approach may be easier and faster for some.
+//   If preferred, you can still return the whole state as an object.
+// A slice for posts with our three reducers
+
+
+
+// The actions that get generated are the same, we just don't
+//  have to write them out individually anymore. From the same file, 
+//  we can export all the actions, the reducer,
+//  the asynchronous thunk, and one new thing - a selector, which
+//   we'll use to access any of the state from a React component instead of using connect.
+// Three actions generated from the slice
