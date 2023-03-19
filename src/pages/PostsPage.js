@@ -24,9 +24,10 @@ const PostsPage = () => {
   }
 
   return (
-    <section>
-      <h1>Posts</h1>
-      {renderPosts()}
+    <section className=" mx-10 my-3 px-20  justify-items-center" >
+      <h1 className='text-cyan-400 text-6xl pb-10 px-10'>Posts</h1>
+      <div className=' text-sm pb-10 px-10 py-1'>{renderPosts()}</div>
+      
     </section>
   )
 }
