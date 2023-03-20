@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+// we need to have default state
 export const initialState={
 loading:false,
 hasErrors:false,
 comments:[],
 }
-
+//create a slice "commentSlice" with name and reducer object that contain
+  //three item "getcomment,getCommentSuccess,..." that contain updated stat
 const CommentsSlice =createSlice({
   name:'comments',   
   initialState,
@@ -24,12 +25,12 @@ const CommentsSlice =createSlice({
     }
   }
 })
-
+// export CommentsSlice.actions ,comment, CommentsSlice.reducer;
 export const {getComments,getCommentsSuccess,getCommentsFailure}=CommentsSlice.actions;
 export const CommentsSelector= state =>state.comments
 export default CommentsSlice.reducer;
 
-
+//10.we need postId in fetch link
 export function fetchComments(postId){
 
     return async dispatch =>{
